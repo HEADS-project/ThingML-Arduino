@@ -1,4 +1,4 @@
-import "../lib/_Datatypes.thingml"
+import "../_Common/_Datatypes.thingml"
 
 thing fragment Adafruit_RGBLCDShieldMsgs {
 	message 4ms_tick() @xms_tic "4";
