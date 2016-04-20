@@ -1,0 +1,1 @@
+java -cp .;%~dp0compilers.jar;%~dp0network-plugins.jar org.thingml.compilers.commandline.Main -c java -s %~dp0Gateway.thingml -o %~dp0_java/Gateway

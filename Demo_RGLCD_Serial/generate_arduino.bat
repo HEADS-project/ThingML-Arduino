@@ -1,0 +1,1 @@
+java -cp .;%~dp0compilers.jar;%~dp0network-plugins.jar org.thingml.compilers.commandline.Main -c arduino -s %~dp0Demoa_RGBLCD.thingml -o %~dp0_arduino
