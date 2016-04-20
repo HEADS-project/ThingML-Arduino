@@ -16,6 +16,7 @@ datatype Boolean<1>
 datatype UInt8<1>	
 	@type_checker "Integer"
 	@c_type "uint8_t"
+    @java_type "byte"
 	@c_byte_size "1";
 	
 datatype UInt16<2>	

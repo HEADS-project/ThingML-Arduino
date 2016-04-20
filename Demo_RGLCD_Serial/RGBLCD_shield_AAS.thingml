@@ -1,4 +1,4 @@
-import "../lib/_Datatypes.thingml"
+import "API.thingml"
 
 thing Multiplexer includes Adafruit_RGBLCDShieldClient {
 	required port netIO {
@@ -36,14 +36,9 @@ thing fragment Adafruit_RGBLCDShieldClient includes Adafruit_RGBLCDShieldMsgs {
 	
 }
 
-thing fragment Adafruit_RGBLCDShieldMsgs {
+thing fragment Adafruit_RGBLCDShieldMsgs includes API {
 	message 4ms_tick() @xms_tic "4" @code "100";
 
-	message button_press(but_id : UInt8) @code "0";
-	message button_release(but_id : UInt8) @code "1";
-	message button_long_press(but_id : UInt8) @code "2";
-	
-	message set_bgcolor(color : UInt8) @code "3";
 	message print_str(msg: String) @code "101";
 	message print_dec(num: Double) @code "102";
     message print_num(num: Integer) @code "103";

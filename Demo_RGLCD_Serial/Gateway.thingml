@@ -1,0 +1,30 @@
+import "API.thingml"
+
+protocol Serial
+@port "COM8"
+@baudrate "115200";
+
+thing Gateway includes API {
+    required port myPort {
+		receives button_press, button_release, button_long_press
+		sends set_bgcolor
+	}
+	
+
+    statechart behavior init Init {
+        
+        state Init {
+            internal event e : myPort?button_press
+            action do
+                print "button pressed\n"    
+                myPort!set_bgcolor(e.but_id)
+            end
+        }    
+    }
+}
+
+configuration config {
+    
+    instance g : Gateway
+    connector g.myPort over Serial    
+}

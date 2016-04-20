@@ -1,0 +1,9 @@
+import "../_Common/_Datatypes.thingml"
+
+thing fragment API {
+	message button_press(but_id : UInt8) @code "0";
+	message button_release(but_id : UInt8) @code "1";
+	message button_long_press(but_id : UInt8) @code "2";
+	
+	message set_bgcolor(color : UInt8) @code "3";	
+}

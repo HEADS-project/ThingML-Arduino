@@ -78,11 +78,11 @@ thing ArduinoSketch includes Adafruit_RGBLCDShieldClient
             	lcd!print_str("BUT:")
                 lcd!print_num(e.but_id)
                 lcd!print_str("  <PRESS>  ")
-                if(e.but_id == 'RIGHT') do
+                /*if(e.but_id == 'RIGHT') do
                     color = color + 1
                     if (color > 7) color = 1
                     lcd!set_bgcolor(color)
-                end
+                end*/
             end   
             
             internal event e : buttons?button_release action do
