@@ -1,0 +1,76 @@
+datatype UInt8<1>
+	@c_type "uint8_t";
+
+datatype Boolean<1>
+	@c_type "uint8_t";
+
+thing fragment Msgs {
+	message l_on();
+	message l_off();
+}
+
+thing Led includes Msgs {
+	property pin : UInt8
+
+	required port p {
+		receives l_on, l_off
+	}
+	
+	statechart Chart init Active {
+
+		state Active {
+			on entry 'pinMode('&pin&', OUTPUT);'
+
+			internal event p?l_on
+			action 'digitalWrite('&pin&', HIGH);'
+
+			internal event p?l_off
+			action 'digitalWrite('&pin&', LOW);'
+		}
+	}
+}
+
+thing Button includes Msgs {
+	property pin : UInt8
+	property isOn : Boolean
+
+	provided port p {
+		sends l_on, l_off
+	}
+	
+	statechart Chart init Active {
+
+		state Active {
+			on entry do
+				'pinMode('&pin&', INPUT);'
+				isOn = 'digitalRead('&pin&')'
+			end
+
+			internal 
+			guard not('digitalRead('&pin&')' == isOn)
+			action do 
+				isOn = not(isOn)
+				if (isOn) do
+					p!l_on()
+				end
+				else do
+					p!l_off()
+				end
+			end
+		}
+	}
+}
+
+configuration ButtonCfg {
+	instance led1 : Led
+	set led1.pin = 3
+
+	instance led2 : Led
+	set led2.pin = 4
+
+	instance b : Button
+	set b.pin = 2
+
+	connector led1.p => b.p 
+	connector led2.p => b.p 
+}
