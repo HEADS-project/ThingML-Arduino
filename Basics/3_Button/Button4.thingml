@@ -1,3 +1,5 @@
+/*Standalone example tested on ESP8266 and trinket Attiny85*/
+
 datatype UInt8<1>
 	@c_type "uint8_t";
 
