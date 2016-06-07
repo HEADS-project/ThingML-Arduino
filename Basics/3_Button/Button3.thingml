@@ -100,7 +100,9 @@ thing TestSoftButton includes SoftButtonMsgs, LEDMsgs {
 	}}
 }
 
-protocol Timer;
+protocol Timer
+@hardware_timer "0"
+;
 
 configuration Button3App 
 @arduino_stdout "Serial"
@@ -108,15 +110,15 @@ configuration Button3App
 
 	instance button : Button
 		set button.PIN = 8
-	connector button.clock over Timer	
+	connector button.clock over Timer @hardware_timer "0"
 	
 	instance l1 : LED
 		set l1.PIN = 11
 	instance l2 : LED
-		set l1.PIN = 12
+		set l2.PIN = 12
 	
 	instance sbut : SoftButton
-	connector sbut.Timer over Timer
+	connector sbut.Timer over Timer @hardware_timer "0"
 	connector sbut.Button => button.evt
 		
 	instance app : TestSoftButton

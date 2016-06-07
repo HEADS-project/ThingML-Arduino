@@ -1,7 +1,7 @@
 import "RGBLCD_shield_AAS.thingml"
 
-protocol Timer;
-protocol Serial;
+protocol Timer @serializer "Binary";
+protocol Serial @serializer "Binary";
 
 configuration testRGBLCD {
     
